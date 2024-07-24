@@ -45,7 +45,7 @@
 
 #if defined(DAWN_USE_WINDOWS_UI)
 #include <windows.ui.core.h>
-#include <windows.ui.xaml.controls.h>
+#include <windows.ui.xaml.media.dxinterop.h>
 #endif  // defined(DAWN_USE_WINDOWS_UI)
 
 #if defined(DAWN_USE_X11)
@@ -148,7 +148,7 @@ ResultOrError<UnpackedPtr<SurfaceDescriptor>> ValidateSurfaceDescriptor(
             auto* subDesc = descriptor.Get<SurfaceDescriptorFromWindowsSwapChainPanel>();
             DAWN_ASSERT(subDesc != nullptr);
             // Validate the swapChainPanel by querying for ISwapChainPanel interface
-            ComPtr<ABI::Windows::UI::Xaml::Controls::ISwapChainPanel> swapChainPanel;
+            ComPtr<ISwapChainPanelNative> swapChainPanel;
             DAWN_INVALID_IF(subDesc->swapChainPanel == nullptr ||
                                 FAILED(static_cast<IUnknown*>(subDesc->swapChainPanel)
                                            ->QueryInterface(IID_PPV_ARGS(&swapChainPanel))),
