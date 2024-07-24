@@ -136,10 +136,4 @@ if (MSVC)
   # the respective clang warning tells us where to add switch cases
   # (otherwise we have to add default: DAWN_UNREACHABLE() that silences clang too)
   dawn_add_flag("/wd4715" CXX)
-  # /ZW makes sure we don't add calls that are forbidden in UWP.
-  # and /EHsc is required to be used in combination with it,
-  # even if it is already added by the windows GN defaults,
-  # we still add it to make every /ZW paired with a /EHsc
-  dawn_add_flag("/ZW:nostdlib" CXX)
-  dawn_add_flag("/EHsc" CXX)
 endif ()
