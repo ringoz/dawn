@@ -27,7 +27,6 @@
 
 #include "src/dawn/native/d3d/PlatformFunctions.h"
 
-#include <comdef.h>
 #include <versionhelpers.h>
 
 #include <vector>
