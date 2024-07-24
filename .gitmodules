@@ -10,18 +10,6 @@
 	path = third_party/depot_tools
 	url = https://chromium.googlesource.com/chromium/tools/depot_tools
 	gclient-condition = dawn_standalone
-[submodule "third_party/libc++/src"]
-	path = third_party/libc++/src
-	url = https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libcxx
-	gclient-condition = dawn_standalone
-[submodule "third_party/libc++abi/src"]
-	path = third_party/libc++abi/src
-	url = https://chromium.googlesource.com/external/github.com/llvm/llvm-project/libcxxabi
-	gclient-condition = dawn_standalone
-[submodule "third_party/libdrm/src"]
-	path = third_party/libdrm/src
-	url = https://chromium.googlesource.com/chromiumos/third_party/libdrm
-	gclient-condition = dawn_standalone and host_os == "linux"
 [submodule "build"]
 	path = build
 	url = https://chromium.googlesource.com/chromium/src/build
@@ -46,10 +34,6 @@
 	path = third_party/googletest
 	url = https://chromium.googlesource.com/external/github.com/google/googletest
 	gclient-condition = dawn_standalone
-[submodule "third_party/catapult"]
-	path = third_party/catapult
-	url = https://chromium.googlesource.com/catapult
-	gclient-condition = dawn_standalone
 [submodule "third_party/google_benchmark/src"]
 	path = third_party/google_benchmark/src
 	url = https://chromium.googlesource.com/external/github.com/google/benchmark
@@ -68,18 +52,6 @@
 [submodule "third_party/vulkan_memory_allocator"]
 	path = third_party/vulkan_memory_allocator
 	url = https://chromium.googlesource.com/external/github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator
-	gclient-condition = dawn_standalone
-[submodule "third_party/angle"]
-	path = third_party/angle
-	url = https://chromium.googlesource.com/angle/angle
-	gclient-condition = dawn_standalone
-[submodule "third_party/swiftshader"]
-	path = third_party/swiftshader
-	url = https://swiftshader.googlesource.com/SwiftShader
-	gclient-condition = dawn_standalone
-[submodule "third_party/vulkan-deps"]
-	path = third_party/vulkan-deps
-	url = https://chromium.googlesource.com/vulkan-deps
 	gclient-condition = dawn_standalone
 [submodule "third_party/glslang/src"]
 	path = third_party/glslang/src
@@ -125,9 +97,6 @@
 	path = third_party/abseil-cpp
 	url = https://chromium.googlesource.com/chromium/src/third_party/abseil-cpp
 	gclient-condition = dawn_standalone
-[submodule "third_party/dxc"]
-	path = third_party/dxc
-	url = https://chromium.googlesource.com/external/github.com/microsoft/DirectXShaderCompiler
 [submodule "third_party/dxheaders"]
 	path = third_party/dxheaders
 	url = https://chromium.googlesource.com/external/github.com/microsoft/DirectX-Headers
@@ -141,10 +110,6 @@
 [submodule "third_party/khronos/EGL-Registry"]
 	path = third_party/khronos/EGL-Registry
 	url = https://chromium.googlesource.com/external/github.com/KhronosGroup/EGL-Registry
-[submodule "third_party/webgpu-cts"]
-	path = third_party/webgpu-cts
-	url = https://chromium.googlesource.com/external/github.com/gpuweb/cts
-	gclient-condition = build_with_chromium
 [submodule "third_party/node-api-headers"]
 	path = third_party/node-api-headers
 	url = https://github.com/nodejs/node-api-headers
