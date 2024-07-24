@@ -46,7 +46,7 @@
 
 #if defined(DAWN_USE_WINDOWS_UI)
 #include <windows.ui.core.h>
-#include <windows.ui.xaml.controls.h>
+#include <windows.ui.xaml.media.dxinterop.h>
 #endif  // defined(DAWN_USE_WINDOWS_UI)
 
 #if defined(DAWN_USE_X11)
@@ -137,7 +137,7 @@ ResultOrError<UnpackedPtr<SurfaceDescriptor>> ValidateSurfaceDescriptor(
         case wgpu::SType::SurfaceSourceWindowsHWND: {
             auto* subDesc = descriptor.Get<SurfaceSourceWindowsHWND>();
             DAWN_ASSERT(subDesc != nullptr);
-            DAWN_INVALID_IF(IsWindow(static_cast<HWND>(subDesc->hwnd)) == 0, "Invalid HWND");
+            //DAWN_INVALID_IF(IsWindow(static_cast<HWND>(subDesc->hwnd)) == 0, "Invalid HWND");
             return descriptor;
         }
 #endif  // DAWN_PLATFORM_IS(WIN32)
@@ -157,7 +157,7 @@ ResultOrError<UnpackedPtr<SurfaceDescriptor>> ValidateSurfaceDescriptor(
             auto* subDesc = descriptor.Get<SurfaceDescriptorFromWindowsUWPSwapChainPanel>();
             DAWN_ASSERT(subDesc != nullptr);
             // Validate the swapChainPanel by querying for ISwapChainPanel interface
-            ComPtr<ABI::Windows::UI::Xaml::Controls::ISwapChainPanel> swapChainPanel;
+            ComPtr<ISwapChainPanelNative> swapChainPanel;
             DAWN_INVALID_IF(subDesc->swapChainPanel == nullptr ||
                                 FAILED(static_cast<IUnknown*>(subDesc->swapChainPanel)
                                            ->QueryInterface(IID_PPV_ARGS(&swapChainPanel))),
