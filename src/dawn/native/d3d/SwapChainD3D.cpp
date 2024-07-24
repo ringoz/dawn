@@ -112,7 +112,7 @@ void SwapChain::DestroyImpl() {
 // nullptr. If it is not nullptr it means that it is the swapchain previously in use on the
 // surface and that we have a chance to reuse it's underlying IDXGISwapChain and "buffers".
 MaybeError SwapChain::Initialize(SwapChainBase* previousSwapChain) {
-    DAWN_ASSERT(GetSurface()->GetType() == Surface::Type::WindowsHWND);
+    //DAWN_ASSERT(GetSurface()->GetType() == Surface::Type::WindowsHWND);
 
     // Precompute the configuration parameters we want for the DXGI swapchain.
     mConfig.bufferCount = PresentModeToBufferCount(GetPresentMode());

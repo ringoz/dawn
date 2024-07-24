@@ -63,6 +63,8 @@ ResultOrError<PhysicalDeviceSurfaceCapabilities> PhysicalDevice::GetSurfaceCapab
 
     // This is the only supported format in native mode (see crbug.com/dawn/160).
     capabilities.formats.push_back(wgpu::TextureFormat::BGRA8Unorm);
+    capabilities.formats.push_back(wgpu::TextureFormat::BGRA8UnormSrgb);
+    capabilities.formats.push_back(wgpu::TextureFormat::RGBA16Float);
 
     capabilities.presentModes = {
         wgpu::PresentMode::Fifo,
