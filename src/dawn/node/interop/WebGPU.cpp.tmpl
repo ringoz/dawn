@@ -89,6 +89,10 @@ Napi::Object Initialize(Napi::Env env) {
   return exports;
 }
 
+void Shutdown(Napi::Env env) {
+  Wrappers::Term(env);
+}
+
 }  // namespace interop
 }  // namespace wgpu
 
@@ -120,6 +124,8 @@ class Wrappers : public Constructors  {
 {{-   end}}
   }
 
+  static thread_local Wrappers* instance;
+
 public:
 {{-   range $ := .Declarations}}
 {{-     if and (IsInterfaceOrNamespace $) (not (HasAnnotation $ "ManualImplementation"))}}
@@ -147,6 +153,8 @@ public:
     return env.GetInstanceData<Wrappers>();
   }
 };
+
+thread_local Wrappers* Wrappers::instance = nullptr;
 {{- end}}
 
 
