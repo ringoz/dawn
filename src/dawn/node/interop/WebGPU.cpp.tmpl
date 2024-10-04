@@ -79,6 +79,10 @@ Napi::Object Initialize(Napi::Env env) {
   return exports;
 }
 
+void Shutdown(Napi::Env env) {
+  Wrappers::Term(env);
+}
+
 }  // namespace interop
 }  // namespace wgpu
 
@@ -101,7 +105,7 @@ class Wrappers {
 {{-   end}}
   }
 
-  static Wrappers* instance;
+  static thread_local Wrappers* instance;
 
 public:
 {{-   range $ := .Declarations}}
@@ -134,7 +138,7 @@ public:
 {{-   end}}
 };
 
-Wrappers* Wrappers::instance = nullptr;
+thread_local Wrappers* Wrappers::instance = nullptr;
 {{- end}}
 
 
