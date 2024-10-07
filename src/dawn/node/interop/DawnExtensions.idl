@@ -29,7 +29,7 @@
 // upstream webgpu.idl.
 
 enum GPUFeatureName {
-    "multi-draw-indirect",
+    "chromium-experimental-multi-draw-indirect",
     "chromium-experimental-immediate-data",
 };
 

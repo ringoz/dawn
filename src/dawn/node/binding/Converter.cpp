@@ -1518,7 +1518,7 @@ bool Converter::Convert(wgpu::FeatureName& out, interop::GPUFeatureName in) {
         case interop::GPUFeatureName::kSubgroups:
             out = wgpu::FeatureName::Subgroups;
             return true;
-        case interop::GPUFeatureName::kMultiDrawIndirect:
+        case interop::GPUFeatureName::kChromiumExperimentalMultiDrawIndirect:
             out = wgpu::FeatureName::MultiDrawIndirect;
             return true;
         case interop::GPUFeatureName::kDualSourceBlending:
@@ -1557,7 +1557,7 @@ bool Converter::Convert(interop::GPUFeatureName& out, wgpu::FeatureName in) {
         CASE(TextureCompressionETC2, kTextureCompressionEtc2);
         CASE(TimestampQuery, kTimestampQuery);
         CASE(Subgroups, kSubgroups);
-        CASE(MultiDrawIndirect, kMultiDrawIndirect);
+        CASE(MultiDrawIndirect, kChromiumExperimentalMultiDrawIndirect);
         CASE(DualSourceBlending, kDualSourceBlending);
         CASE(ClipDistances, kClipDistances);
         CASE(ChromiumExperimentalImmediateData, kChromiumExperimentalImmediateData);
