@@ -80,7 +80,11 @@ typedef (ArrayBuffer or /* SharedArrayBuffer or [AllowShared] */ ArrayBufferView
 [LegacyNoInterfaceObject] interface HTMLCanvasElement {};
 [LegacyNoInterfaceObject] interface HTMLImageElement {};
 [LegacyNoInterfaceObject] interface HTMLVideoElement {};
-[LegacyNoInterfaceObject] interface ImageBitmap {};
+[LegacyNoInterfaceObject] interface ImageBitmap {
+  readonly attribute unsigned long width;
+  readonly attribute unsigned long height;
+  undefined close();
+};
 [LegacyNoInterfaceObject] interface ImageData {};
 [LegacyNoInterfaceObject] interface OffscreenCanvas {};
 [LegacyNoInterfaceObject] interface VideoFrame {};
