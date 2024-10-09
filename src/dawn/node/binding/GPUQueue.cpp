@@ -146,13 +146,6 @@ void GPUQueue::writeTexture(Napi::Env env,
     queue_.WriteTexture(&dst, src.data, src.size, &layout, &sz);
 }
 
-void GPUQueue::copyExternalImageToTexture(Napi::Env env,
-                                          interop::GPUImageCopyExternalImage source,
-                                          interop::GPUImageCopyTextureTagged destination,
-                                          interop::GPUExtent3D copySize) {
-    UNIMPLEMENTED(env);
-}
-
 std::string GPUQueue::getLabel(Napi::Env) {
     return label_;
 }
