@@ -130,7 +130,7 @@ class GPUDevice final : public interop::GPUDevice, EventTarget {
                                               ErrorType type,
                                               wgpu::StringView message);
 
-  private:
+  public:
     Napi::Env env_;
     wgpu::Device device_;
     std::shared_ptr<AsyncRunner> async_;
