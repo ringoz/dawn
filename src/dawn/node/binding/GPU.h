@@ -51,7 +51,7 @@ class GPU final : public interop::GPU {
     interop::GPUTextureFormat getPreferredCanvasFormat(Napi::Env) override;
     interop::Interface<interop::WGSLLanguageFeatures> getWgslLanguageFeatures(Napi::Env) override;
 
-  private:
+  public:
     const Flags flags_;
     std::unique_ptr<dawn::native::Instance> instance_;
     std::shared_ptr<AsyncRunner> async_;
