@@ -222,8 +222,8 @@ class PromiseBase {
 
     // Reject() rejects the promise with the given failure value.
     void Reject(Napi::Value value) const {
-        state_->deferred.Reject(value);
         state_->state = PromiseState::Rejected;
+        state_->deferred.Reject(value);
     }
     void Reject(Napi::Error err) const { Reject(err.Value()); }
     void Reject(std::string err) const { Reject(Napi::Error::New(state_->deferred.Env(), err)); }
@@ -238,8 +238,8 @@ class PromiseBase {
 
   protected:
     void Resolve(Napi::Value value) const {
-        state_->deferred.Resolve(value);
         state_->state = PromiseState::Resolved;
+        state_->deferred.Resolve(value);
     }
 
     struct State {
