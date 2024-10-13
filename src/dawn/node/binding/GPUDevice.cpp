@@ -149,8 +149,7 @@ GPUDevice::GPUDevice(Napi::Env env,
       lost_promise_(lost_promise),
       label_(CopyLabel(desc.label)) {
     device_.SetLoggingCallback([](wgpu::LoggingType type, wgpu::StringView message) {
-        printf("%s:\n", str(type));
-        chunkedWrite(message);
+        std::cout << str(type) << ":\n" << message;
     });
 }
 
