@@ -203,8 +203,7 @@ GPUDevice::GPUDevice(Napi::Env env,
       lost_promise_(lost_promise),
       label_(CopyLabel(desc.label)) {
     device_.SetLoggingCallback([](wgpu::LoggingType type, wgpu::StringView message) {
-        printf("%s:\n", str(type));
-        chunkedWrite(message);
+        std::cout << str(type) << ":\n" << message;
     });
     {
         std::lock_guard<std::mutex> lock(s_device_to_js_map_mutex_);
@@ -250,8 +249,7 @@ void GPUDevice::handleUncapturedError(ErrorType type, wgpu::StringView message) 
 
     bool doDefault = dispatchEvent(env_, eventObj);
     if (doDefault) {
-        printf("%s:\n", str(type));
-        chunkedWrite(message);
+        std::cout << str(type) << ":\n" << message;
     }
 }
 
