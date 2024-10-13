@@ -150,8 +150,7 @@ GPUDevice::GPUDevice(Napi::Env env,
       label_(CopyLabel(desc.label)) {
     device_.SetLoggingCallback(
         [](WGPULoggingType type, WGPUStringView message, void* userdata) {
-            printf("%s:\n", str(type));
-            chunkedWrite(message);
+            std::cout << str(type) << ":\n" << message;
         },
         nullptr);
 }
