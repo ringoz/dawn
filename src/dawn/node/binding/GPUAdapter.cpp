@@ -263,8 +263,7 @@ interop::Promise<interop::Interface<interop::GPUDevice>> GPUAdapter::requestDevi
         device_lost_ctx);
     desc.SetUncapturedErrorCallback(
         [](const wgpu::Device&, ErrorType type, wgpu::StringView message) {
-            printf("%s:\n", str(type));
-            chunkedWrite(message);
+            std::cout << str(type) << ":\n" << message;
         });
 
     // Propagate enabled/disabled dawn features
