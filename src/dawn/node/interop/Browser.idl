@@ -80,7 +80,7 @@ typedef (ArrayBuffer or /* SharedArrayBuffer or [AllowShared] */ ArrayBufferView
 [LegacyNoInterfaceObject] interface OffscreenCanvas {};
 [LegacyNoInterfaceObject] interface VideoFrame {};
 
-enum PredefinedColorSpace { "srgb", "display-p3" };
+enum PredefinedColorSpace { "srgb", "display-p3", "srgb-linear" };
 
 // Add this annotation to these classes as we need to treat them special.
 [ManualImplementation] interface GPUUncapturedErrorEvent {};
