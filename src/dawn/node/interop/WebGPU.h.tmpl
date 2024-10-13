@@ -177,6 +177,8 @@ public:
 {{- define "Typedef"}}
 {{-   if HasAnnotation $ "EnforceRange"}}
 using {{$.Name}} = EnforceRangeInteger<{{template "Type" $.Type}}>;
+{{-   else if eq $.Name "GPUCopyExternalImageSource"}}
+using {{$.Name}} = Object;
 {{-   else}}
 using {{$.Name}} = {{template "Type" $.Type}};
 {{-   end}}
