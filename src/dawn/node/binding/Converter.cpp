@@ -1503,6 +1503,9 @@ bool Converter::Convert(wgpu::FeatureName& out, interop::GPUFeatureName in) {
         case interop::GPUFeatureName::kShaderF16:
             out = wgpu::FeatureName::ShaderF16;
             return true;
+        case interop::GPUFeatureName::kTransientAttachments:
+            out = wgpu::FeatureName::TransientAttachments;
+            return true;
         case interop::GPUFeatureName::kRg11B10UfloatRenderable:
             out = wgpu::FeatureName::RG11B10UfloatRenderable;
             return true;
@@ -1552,6 +1555,7 @@ bool Converter::Convert(interop::GPUFeatureName& out, wgpu::FeatureName in) {
         CASE(IndirectFirstInstance, kIndirectFirstInstance);
         CASE(RG11B10UfloatRenderable, kRg11B10UfloatRenderable);
         CASE(ShaderF16, kShaderF16);
+        CASE(TransientAttachments, kTransientAttachments);
         CASE(TextureCompressionASTC, kTextureCompressionAstc);
         CASE(TextureCompressionBC, kTextureCompressionBc);
         CASE(TextureCompressionETC2, kTextureCompressionEtc2);
@@ -1612,7 +1616,6 @@ bool Converter::Convert(interop::GPUFeatureName& out, wgpu::FeatureName in) {
         case wgpu::FeatureName::SharedTextureMemoryZirconHandle:
         case wgpu::FeatureName::StaticSamplers:
         case wgpu::FeatureName::SubgroupsF16:
-        case wgpu::FeatureName::TransientAttachments:
         case wgpu::FeatureName::YCbCrVulkanSamplers:
         case wgpu::FeatureName::DawnLoadResolveTexture:
         case wgpu::FeatureName::DawnPartialLoadResolveTexture:
