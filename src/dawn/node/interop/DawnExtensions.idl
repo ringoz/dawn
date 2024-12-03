@@ -29,6 +29,7 @@
 // upstream webgpu.idl.
 
 enum GPUFeatureName {
+    "transient-attachments",
     "chromium-experimental-multi-draw-indirect",
     "chromium-experimental-subgroup-matrix",
     "core-features-and-limits",
