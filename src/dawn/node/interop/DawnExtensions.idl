@@ -32,6 +32,7 @@ enum GPUFeatureName {
     // subgroups, subgroups-f16 and multi-draw-indirect features are not in webgpu.idl yet.
     "subgroups",
     "subgroups-f16",
+    "transient-attachments",
     "chromium-experimental-multi-draw-indirect",
     "chromium-experimental-immediate-data",
 };
