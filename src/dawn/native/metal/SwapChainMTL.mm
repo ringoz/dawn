@@ -92,6 +92,8 @@ MaybeError SwapChain::Initialize(SwapChainBase* previousSwapChain) {
 }
 
 MaybeError SwapChain::PresentImpl() {
+    ToBackend(GetDevice()->GetQueue())->WaitForCommandsToBeScheduled();
+
     DAWN_ASSERT(mCurrentDrawable != nullptr);
 
     Queue* queue = ToBackend(GetDevice()->GetQueue());
