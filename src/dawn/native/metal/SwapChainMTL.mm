@@ -30,6 +30,7 @@
 #include "dawn/native/ChainUtils.h"
 #include "dawn/native/Surface.h"
 #include "dawn/native/metal/DeviceMTL.h"
+#include "dawn/native/metal/QueueMTL.h"
 #include "dawn/native/metal/TextureMTL.h"
 
 #import <QuartzCore/CAMetalLayer.h>
@@ -90,6 +91,8 @@ MaybeError SwapChain::Initialize(SwapChainBase* previousSwapChain) {
 }
 
 MaybeError SwapChain::PresentImpl() {
+    ToBackend(GetDevice()->GetQueue())->WaitForCommandsToBeScheduled();
+
     DAWN_ASSERT(mCurrentDrawable != nullptr);
     [*mCurrentDrawable present];
 
