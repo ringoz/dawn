@@ -195,9 +195,9 @@ MaybeError SwapChain::Initialize(SwapChainBase* previousSwapChain) {
                                                    mConfig.format, mConfig.swapChainFlags),
                      "IDXGISwapChain::ResizeBuffer"));
 #if defined(DAWN_USE_WINDOWS_UI)
-    if (GetSurface()->GetType() == Surface::Type::WindowsSwapChainPanel) {
+    if (GetSurface()->GetType() == Surface::Type::WindowsUWPSwapChainPanel) {
         ComPtr<ISwapChainPanelNative> swapChainPanelNative;
-        if (SUCCEEDED(GetSurface()->GetSwapChainPanel()->QueryInterface(IID_PPV_ARGS(&swapChainPanelNative))))
+        if (SUCCEEDED(GetSurface()->GetUWPSwapChainPanel()->QueryInterface(IID_PPV_ARGS(&swapChainPanelNative))))
             swapChainPanelNative->SetSwapChain(mDXGISwapChain.Get());
     }
 #endif  // defined(DAWN_USE_WINDOWS_UI)
