@@ -34,6 +34,8 @@ endif ()
 if (("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang") OR
     ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "AppleClang") OR
     ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU"))
+    add_compile_options(-Wno-unused-command-line-argument)
+    add_compile_options(-Wno-switch-default)
     add_compile_options(-Wno-c++20-compat)
 endif()
 
