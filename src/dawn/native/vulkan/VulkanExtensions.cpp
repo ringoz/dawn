@@ -50,7 +50,7 @@ static constexpr std::array<InstanceExtInfo, kInstanceExtCount> sInstanceExtInfo
     {InstanceExt::XlibSurface, "VK_KHR_xlib_surface"},
     {InstanceExt::AndroidSurface, "VK_KHR_android_surface"},
 
-    {InstanceExt::DebugUtils, "VK_EXT_debug_utils"},
+    {InstanceExt::DebugUtils, "VK_EXT_debug_utils1"},
     {InstanceExt::ValidationFeatures, "VK_EXT_validation_features"},
     //
 }};
