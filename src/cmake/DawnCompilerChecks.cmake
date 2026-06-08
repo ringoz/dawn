@@ -45,35 +45,3 @@ endif ()
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_EXTENSIONS False)
-
-# Prevent scanning headers for module dependencies
-# Also needed for the module compile check below
-set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
-
-# Check C++20 module support
-# Ref: https://cmake.org/cmake/help/latest/manual/cmake-cxxmodules.7.html
-if(CMAKE_VERSION VERSION_GREATER_EQUAL 3.28
-  # Supported generators
-  AND
-  ((CMAKE_GENERATOR MATCHES "Ninja") OR
-   (CMAKE_GENERATOR MATCHES "^Visual Studio ([0-9]+) [0-9]+$"
-    AND CMAKE_MATCH_1 GREATER_EQUAL 17))
-  # AppleClang, VisualStudio and certain Linux distros
-  # don't bundle clang-scan-deps
-  AND
-  ((CMAKE_CXX_COMPILER_ID MATCHES Clang
-   AND CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS)
-   OR NOT CMAKE_CXX_COMPILER_ID MATCHES Clang))
-
-  include(CheckCXXSourceCompiles)
-  if(CMAKE_CXX_COMPILER_ID STREQUAL GNU)
-    set(CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS} -fmodules-ts")
-  endif()
-  check_cxx_source_compiles([[
-    module;
-    export module test;
-    extern "C++" int main() {}
-  ]] DAWN_SUPPORTS_CXX_MODULES)
-else()
-  set(DAWN_SUPPORTS_CXX_MODULES False)
-endif()
