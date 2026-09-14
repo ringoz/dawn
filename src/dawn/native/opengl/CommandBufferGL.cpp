@@ -346,6 +346,13 @@ class BindGroupTracker : public BindGroupTrackerBase<false> {
         return {};
     }
 
+  protected:
+    bool AreLayoutsCompatible() override {
+        // GLES derives texture units from the current shader, so bind groups must be
+        // re-applied whenever the pipeline changes even if the pipeline layout is identical.
+        return mLastAppliedPipeline != nullptr && mLastAppliedPipeline == mPipeline;
+    }
+
   private:
     MaybeError BindSamplerAtIndex(const OpenGLFunctions& gl,
                                   SamplerBase* s,
