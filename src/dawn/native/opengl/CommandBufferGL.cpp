@@ -796,20 +796,30 @@ class ImmediateTracker : public T {
         auto* lastPipeline = this->mLastPipeline;
         ImmediateMask pipelineMask = lastPipeline->GetImmediateMask();
         ImmediateMask uploadBits = this->mDirty & pipelineMask;
-        for (auto&& [offset, size] : IterateRanges(uploadBits)) {
-            size_t immediateContentStartOffset = size_t{offset} * kImmediateElementByteSize;
-            auto location =
-                GetImmediateIndexInPipeline(static_cast<uint32_t>(offset), pipelineMask);
-            auto data = ReinterpretSpan<const uint32_t>(this->mContent.GetDataBytes(
-                immediateContentStartOffset, size * kImmediateElementByteSize));
-            DAWN_GL_TRY(gl,
-                        Uniform1uiv(location, checked_cast<uint32_t>(data.size()), data.data()));
+        if (uploadBits.any()) {
+            // Pack the pipeline's compacted immediate layout and upload it in a single
+            // glUniform1uiv call. Some GLES drivers mishandle updates at non-zero locations
+            // of a uniform array, and a single call at location 0 is always safe.
+            uint32_t packedCount =
+                RoundUp(static_cast<uint32_t>(pipelineMask.count()), 4u);
+            mPacked.assign(packedCount, 0u);
+            for (auto&& [offset, size] : IterateRanges(pipelineMask)) {
+                uint32_t dst =
+                    GetImmediateIndexInPipeline(static_cast<uint32_t>(offset), pipelineMask);
+                auto src = this->mContent.GetDataBytes(
+                    size_t{offset} * kImmediateElementByteSize, size * kImmediateElementByteSize);
+                std::memcpy(mPacked.data() + dst, src.data(), size * kImmediateElementByteSize);
+            }
+            DAWN_GL_TRY(gl, Uniform1uiv(0, packedCount, mPacked.data()));
         }
 
         // Reset all dirty bits after uploading.
         this->mDirty.reset();
         return {};
     }
+
+  private:
+    std::vector<uint32_t> mPacked;
 };
 
 }  // namespace
